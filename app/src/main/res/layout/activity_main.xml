@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <com.example.shanks.testbodyanalysis.MyFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <com.example.shanks.testbodyanalysis.MyImageView
+            android:id="@+id/imageViewOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="false"
+            android:scaleType="matrix"
+            app:srcCompat="@android:color/background_light"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <com.example.shanks.testbodyanalysis.MyImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="false"
+            android:scaleType="matrix"
+            app:srcCompat="@android:color/background_light"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <com.example.shanks.testbodyanalysis.BodyView
+            android:id="@+id/bodyview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="matrix" />
+
+    </com.example.shanks.testbodyanalysis.MyFrameLayout>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="103dp"
+        android:text="GetToken" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="46dp"
+        android:layout_marginStart="24dp"
+        android:text="人体关键点"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="499dp" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn1"
+        android:layout_centerHorizontal="true"
+        android:text="人体属性"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btn1"
+        android:layout_marginEnd="31dp"
+        android:text="人流量"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btn1"
+        android:text="手势识别"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="人像分割"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btn3"
+        android:text="二值化"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/binaryView"
+        android:layout_alignStart="@+id/btn3"
+        android:text="驾驶人员分析"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <Button
+        android:id="@+id/btn8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/binaryView"
+        android:layout_alignParentStart="true"
+        android:text="人流量静态分析"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="495dp" />
+
+    <ImageView
+        android:id="@+id/binaryView"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_above="@+id/btn1"
+        android:layout_alignParentStart="true"
+        app:srcCompat="?android:attr/colorBackground" />
+
+    <ImageView
+        android:id="@+id/originView"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="?android:attr/colorBackground" />
+
+    <TextView
+        android:id="@+id/tokenTextView"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="167dp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="173dp"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="279dp"
+        android:layout_height="98dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="148dp"
+        android:textColor="@android:color/holo_red_dark" />
+
+</RelativeLayout>

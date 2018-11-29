@@ -3,7 +3,7 @@ package com.example.shanks.testbodyanalysis;
 import java.util.List;
 
 /*
-驾驶行为分析
+驾驶行为分析 数据结构类
  */
 public class DriverBehaviour {
     //人体数目

@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 /*
-人体框
+人体分析 绘制视图类
  */
 public class BodyView extends View {
     private final String TAG = this.getClass().toString();
@@ -375,8 +375,6 @@ public class BodyView extends View {
                 return;
             }
 
-            // 绘制--------------------------------------
-// 人体区域
             bodyRect = new Rect();
             personNum = this.mDriver.getPerson_num();
             Log.d(TAG, ">>>>>>>>>识别驾驶人员：" + personNum);
@@ -413,7 +411,7 @@ public class BodyView extends View {
 
             this.mSegment = null;
         }
-        else if (this.viewMode == ViewMode.StaticTracking) {              // 人流量静态分析 绘制内容--------------------------------------
+        else if (this.viewMode == ViewMode.StaticTracking) {              // 人流量统计动态版 -static分析 绘制内容--------------------------------------
             if (this.mBodyTrack == null) {
                 return;
             }

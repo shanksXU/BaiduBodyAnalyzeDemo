@@ -12,7 +12,9 @@ import com.baidu.aip.util.Base64Util;
 
 import java.io.ByteArrayOutputStream;
 
-
+/*
+Util类
+ */
 public class Util {
     private static final String TAG = Util.class.toString();
 
@@ -21,10 +23,11 @@ public class Util {
     public static final String SECRET_KEY = "You Secret Key";    // APP secret key
 
 
-    // 人像分割（返回的二值图像需要进行二次处理才可查看分割效果）
     /*
+    人像分割（返回的二值图像需要进行二次处理才可查看分割效果）
     目前接口返回的是一个4道通图片（Base64解码收到的字符串，再用一个图片解码器转为PNG格式）， 把这个图片的RGB通中 值是1的改为255  就可以显示成纯黑纯白的图片了；
-     */
+    注意：Thumbnail缩略图缩放函数，效果不好，缩放有问题请采用zoomImage接口
+    */
     public static Bitmap thumbnailImg(Bitmap bm, int width, int height){
         // 缩放
         Bitmap scaleBitmap = ThumbnailUtils.extractThumbnail(bm, width, height);
@@ -44,6 +47,10 @@ public class Util {
         return scaleBitmap;
     }
 
+    /*
+    人像分割（返回的二值图像需要进行二次处理才可查看分割效果）
+    注意：CreateBitmap传入矩阵缩放，效果比较好，分割出来的图像效果好一些
+     */
     public static Bitmap zoomImg(Bitmap bm, int newWidth, int newHeight){
         int w = bm.getWidth();
         int h = bm.getHeight();

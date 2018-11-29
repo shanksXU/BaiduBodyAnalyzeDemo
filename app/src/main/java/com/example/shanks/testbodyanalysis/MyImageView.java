@@ -6,6 +6,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+/*
+自定义ImageView
+ */
 public class MyImageView extends android.support.v7.widget.AppCompatImageView{
 
     public MyImageView(Context context) {

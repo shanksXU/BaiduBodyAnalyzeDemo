@@ -8,6 +8,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+/*
+自定义布局
+ */
 public class MyFrameLayout extends FrameLayout {
     private float downX;
     private float downY;

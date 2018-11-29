@@ -28,6 +28,10 @@ import com.baidu.aip.util.Base64Util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+/*
+    人流量统计动态版
+    功能：基于相机视频流，每隔一定时间抓取快照，调用人流量统计接口进行分析，并将分析结果（渲染图）生成缩略图显示出来
+ */
 public class CameraActivity extends Activity implements SurfaceHolder.Callback{
     private final String TAG = this.getClass().toString();
 

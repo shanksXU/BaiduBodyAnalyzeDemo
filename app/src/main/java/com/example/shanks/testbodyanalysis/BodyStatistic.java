@@ -3,7 +3,7 @@ package com.example.shanks.testbodyanalysis;
 import java.util.List;
 
 /*
-人流量
+人流量统计 数据结构类
  */
 public class BodyStatistic {
     //人体数目

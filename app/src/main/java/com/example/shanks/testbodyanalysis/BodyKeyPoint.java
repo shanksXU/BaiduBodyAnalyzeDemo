@@ -1,7 +1,9 @@
 package com.example.shanks.testbodyanalysis;
 
 import java.util.List;
-
+/*
+人体关键点 数据结构类
+ */
 public class BodyKeyPoint {
     //人体数目
     private int person_num;

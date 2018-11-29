@@ -11,26 +11,26 @@ import java.util.HashMap;
 
 
 /*
-百度人体分析
-人体关键点识别
-人体属性分析
-人流量统计
+百度人体分析 开放API接口封装：
+    人体关键点识别
+    人体属性分析
+    人流量统计
+    人像分割
+    手势识别
  */
 public class BodyAnalyze {
     // Log TAG
     private final String TAG = this.getClass().toString();
 
     // 人体识别client
-    private AipBodyAnalysis client;
-    private AipBodyAnalysisEx client2;
+    private AipBodyAnalysisEx client;
     /*
     初始化
      */
     public void init(){
         // 初始化一个client
-        client = new AipBodyAnalysis(Util.APP_ID, Util.APP_KEY, Util.SECRET_KEY);
-        client2 = new AipBodyAnalysisEx(Util.APP_ID, Util.APP_KEY, Util.SECRET_KEY);
-        if (client == null || client2 == null){
+        client = new AipBodyAnalysisEx(Util.APP_ID, Util.APP_KEY, Util.SECRET_KEY);
+        if (client == null){
             Log.e(TAG, "Error:client create failed!");
             return;
         }
@@ -38,10 +38,6 @@ public class BodyAnalyze {
         // 设置网络连接参数
         client.setConnectionTimeoutInMillis(2000);
         client.setSocketTimeoutInMillis(60000);
-
-        client2.setConnectionTimeoutInMillis(2000);
-        client2.setSocketTimeoutInMillis(60000);
-
 
         // 可选：设置代理服务器地址，http和socket，或者均不设置
 //        client.setHttpProxy("proxy_host", 0);
@@ -53,6 +49,7 @@ public class BodyAnalyze {
 
     /*
        人体关键点
+       param:String
      */
     public BodyKeyPoint doKeyPointAnalyze(String imagePath) {
         Log.d(TAG, "Body Analyze -- doKeyPointAnalyze!");
@@ -73,6 +70,7 @@ public class BodyAnalyze {
     }
     /*
     人体关键点
+    param:byte[]
      */
     public BodyKeyPoint doKeyPointAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze -- doKeyPointAnalyze!");
@@ -94,6 +92,7 @@ public class BodyAnalyze {
 
     /*
     人体属性分析
+    param:byte[]
      */
     public BodyAttr doAttrAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze doAnalyze!");
@@ -117,6 +116,7 @@ public class BodyAnalyze {
 
     /*
     人流量分析
+    param:byte[]
      */
     public BodyStatistic doStatisticAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze doAnalyze!");
@@ -142,6 +142,7 @@ public class BodyAnalyze {
     /*
     手势识别
     除识别手势外，若图像中检测到人脸，会同时返回人脸框位置。
+    param:byte[]
      */
     public Gesture doGestureAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze doAnalyze!" );
@@ -162,8 +163,10 @@ public class BodyAnalyze {
     }
 
     /*
+    人像分割
     对于输入的一张图片（可正常解码，且长宽比适宜），识别人体的轮廓范围，与背景进行分离，适用于拍照背景替换、照片合成、身体特效等场景。输入正常人像图片，返回分割后的二值结果图和分割类型（目前仅支持person）
     返回的二值图像需要进行二次处理才可查看分割效果
+    param:byte[]
      */
     public BodySegment doSegmentAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze doAnalyze!");
@@ -182,14 +185,18 @@ public class BodyAnalyze {
         return segment;
     }
 
+    /*
+    驾驶人员行为分析（邀测）
+    param:byte[]
+     */
     public DriverBehaviour doDriverBehaviorAnalyze(byte[] data){
         Log.d(TAG, ">>>>>>>>>>Body Analyze doDriverBehaviorAnalyze!");
-        if (client2 == null){
+        if (client == null){
             Log.e(TAG, "Error:Body Analyze client2 is null!");
             return null;
         }
         HashMap<String, String> options = new HashMap<String, String>();
-        JSONObject res = client2.driverBehavior(data, options);
+        JSONObject res = client.driverBehavior(data, options);
 
         Log.d(TAG, ">>>>>>>>>>>>" + res.toString());
         DriverBehaviour driverBehaviour = JSON.parseObject(res.toString(), DriverBehaviour.class);
@@ -200,20 +207,19 @@ public class BodyAnalyze {
     }
 
     /*
-    人流量静态分析
+    人流量统计动态版（邀测）-Static分析
+    param:byte[]
      */
     public BodyTracking doStaticBodyTracking(byte[] data) {
         Log.d(TAG, ">>>>>>>>>>Body Analyze doDriverBehaviorAnalyze!");
-        if (client2 == null) {
+        if (client == null) {
             Log.e(TAG, "Error:Body Analyze client2 is null!");
             return null;
         }
         HashMap<String, String> options = new HashMap<String, String>();
-        options.put("dynamic", "false"); // true：动态人流量统计，返回总人数、跟踪ID、区域进出人数； false：静态人数统计，返回总人数
-        options.put("show", "true"); // 是否返回结果图（含统计值和跟踪框渲染），默认不返回，选true时返回渲染后的图片(base64)，其它无效值或为空则默认false
-
-
-        JSONObject res = client2.bodyTracking(data, options);
+        options.put("dynamic", "false");    // true：动态人流量统计，返回总人数、跟踪ID、区域进出人数； false：静态人数统计，返回总人数
+        options.put("show", "true");        // 是否返回结果图（含统计值和跟踪框渲染），默认不返回，选true时返回渲染后的图片(base64)，其它无效值或为空则默认false
+        JSONObject res = client.bodyTracking(data, options);
 
         Log.d(TAG, ">>>>>>>>>>>>" + res.toString());
         BodyTracking bodyTracking = JSON.parseObject(res.toString(), BodyTracking.class);
@@ -225,25 +231,23 @@ public class BodyAnalyze {
     }
 
     /*
-    人流量动态分析
+    人流量动态统计（邀测）-Dynamic分析
+    param:byte[]
      */
     public BodyTracking doDynamicBodyTracking(byte[] data, int case_id, String area) {
         Log.d(TAG, "==================================case_id:" + case_id + ",area:" + area);
         Log.d(TAG, ">>>>>>>>>>Body Analyze doDriverBehaviorAnalyze!");
-        if (client2 == null) {
+        if (client == null) {
             Log.e(TAG, "Error:Body Analyze client2 is null!");
             return null;
         }
         HashMap<String, String> options = new HashMap<String, String>();
-
-        options.put("dynamic", "true"); // true：动态人流量统计，返回总人数、跟踪ID、区域进出人数； false：静态人数统计，返回总人数
-        options.put("case_id", "" + case_id); // (当dynamic为True时，必填)任务ID（通过case_id区分不同视频流，自拟，不同序列间不可重复）
+        options.put("dynamic", "true");         // true：动态人流量统计，返回总人数、跟踪ID、区域进出人数； false：静态人数统计，返回总人数
+        options.put("case_id", "" + case_id);   // (当dynamic为True时，必填)任务ID（通过case_id区分不同视频流，自拟，不同序列间不可重复）
         options.put("case_init", case_id == 1 ? "true" : "false"); // (当dynamic为True时，必填)每个case的初始化信号，为true时对该case下的跟踪算法进行初始化，为false时重载该case的跟踪状态。当为false且读取不到相应case的信息时，直接重新初始化
-        options.put("show", "true"); // 是否返回结果图（含统计值和跟踪框渲染），默认不返回，选true时返回渲染后的图片(base64)，其它无效值或为空则默认false
-        options.put("area", area); // (当dynamic为True时，必填)静态人数统计时，只统计区域内的人，缺省时为全图统计。动态人流量统计时，进出区域的人流会被统计。逗号分隔，如‘x1,y1,x2,y2,x3,y3...xn,yn'，按顺序依次给出每个顶点的xy坐标（默认尾点和首点相连），形成闭合多边形区域。服务会做范围（顶点左边需在图像范围内）及个数校验（数组长度必须为偶数，且大于3个顶点）。只支持单个多边形区域，建议设置矩形框，即4个顶点。
-
-
-        JSONObject res = client2.bodyTracking(data, options);
+        options.put("show", "true");            // 是否返回结果图（含统计值和跟踪框渲染），默认不返回，选true时返回渲染后的图片(base64)，其它无效值或为空则默认false
+        options.put("area", area);              // (当dynamic为True时，必填)静态人数统计时，只统计区域内的人，缺省时为全图统计。动态人流量统计时，进出区域的人流会被统计。逗号分隔，如‘x1,y1,x2,y2,x3,y3...xn,yn'，按顺序依次给出每个顶点的xy坐标（默认尾点和首点相连），形成闭合多边形区域。服务会做范围（顶点左边需在图像范围内）及个数校验（数组长度必须为偶数，且大于3个顶点）。只支持单个多边形区域，建议设置矩形框，即4个顶点。
+        JSONObject res = client.bodyTracking(data, options);
 
         Log.d(TAG, ">>>>>>>>>>>>" + res.toString());
         BodyTracking bodyTracking = JSON.parseObject(res.toString(), BodyTracking.class);

@@ -29,6 +29,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+/*
+百度人体分析
+ */
 public class MainActivity extends AppCompatActivity {
     private final String TAG = this.getClass().toString();
 

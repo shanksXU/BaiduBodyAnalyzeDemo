@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /*
-接口鉴权服务
+百度开放平台接口鉴权服务
  */
 public class AuthService {
     private static final String TAG = AuthService.class.toString();
@@ -23,7 +23,7 @@ public class AuthService {
     这个token有效期30天，不需要每次都要请求，可以本地记录下来，每次应用启动只请求一次，或者其他方式
      */
     public static String getAccessToken(String appKey, String secretKey){
-        Log.d(TAG, ">>>>>>>>getAccessToken");
+        Log.d(TAG, ">>>>>>>>AI");
 
         String uri = authHost +
                 "grant_type=client_credentials" +

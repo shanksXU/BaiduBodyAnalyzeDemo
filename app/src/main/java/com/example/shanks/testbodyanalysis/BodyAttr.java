@@ -3,7 +3,7 @@ package com.example.shanks.testbodyanalysis;
 import java.util.List;
 
 /*
-人体对象类
+人体属性 数据结构类
  */
 public class BodyAttr {
     //人体数目

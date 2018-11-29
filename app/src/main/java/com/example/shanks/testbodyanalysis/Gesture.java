@@ -3,7 +3,7 @@ package com.example.shanks.testbodyanalysis;
 import java.util.List;
 
 /*
-手势
+手势 数据结构类
  */
 public class Gesture {
     private long log_id;

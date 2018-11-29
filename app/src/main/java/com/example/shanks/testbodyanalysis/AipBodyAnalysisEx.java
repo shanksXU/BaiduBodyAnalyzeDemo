@@ -7,7 +7,9 @@ import com.baidu.aip.util.Base64Util;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-
+/*
+百度人体分析AI 邀测接口扩展类
+ */
 public class AipBodyAnalysisEx extends AipBodyAnalysis {
 
     public AipBodyAnalysisEx(String appId, String apiKey, String secretKey) {
@@ -15,7 +17,7 @@ public class AipBodyAnalysisEx extends AipBodyAnalysis {
     }
 
     /*
-    驾驶人员行为分析
+    驾驶人员行为分析（邀测）
      */
     public JSONObject driverBehavior(byte[] image, HashMap<String, String> options) {
         AipRequest request = new AipRequest();
@@ -32,7 +34,7 @@ public class AipBodyAnalysisEx extends AipBodyAnalysis {
     }
 
     /*
-    人流量动态分析
+    人流量动态分析（邀测）
      */
     public JSONObject bodyTracking(byte[] image, HashMap<String, String> options) {
         AipRequest request = new AipRequest();

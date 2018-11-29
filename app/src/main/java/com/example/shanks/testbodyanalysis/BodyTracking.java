@@ -2,6 +2,9 @@ package com.example.shanks.testbodyanalysis;
 
 import java.util.List;
 
+/*
+人流量统计动态版 数据结构类
+ */
 public class BodyTracking {
     //人体数目
     private int person_num;

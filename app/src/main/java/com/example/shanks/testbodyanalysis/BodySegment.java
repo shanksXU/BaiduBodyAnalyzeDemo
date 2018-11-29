@@ -1,8 +1,7 @@
 package com.example.shanks.testbodyanalysis;
 
 /*
-人像分割
-返回的二值图像需要进行二次处理才可查看分割效果
+人像分割 数据结构类
  */
 public class BodySegment {
     private long log_id;
